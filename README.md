@@ -11,12 +11,12 @@ This is part of the [Nitro](http://www.nitrojs.org/) ecosystem of Web Applicatio
 Usage
 -----
 
-    var parseHTML = require("htmlparser").parseHTML,
-        SIZZLE = require("sizzle");
+    var parse = require("htmlparser").parse,
+        sizzle = require("sizzle").sizzle;
         
     var html = '<html><p id="header"><b>nice</b></p><div id="test" class="big">hello</div><div>second</div></html>',
         document = parseHTML(html),
-        $ = SIZZLE.init(document);
+        $ = sizzle(document);
 
         $("div").forEach(function(el) {
             print(el.innerHTML);

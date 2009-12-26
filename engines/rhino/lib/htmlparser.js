@@ -225,6 +225,6 @@ var _nodelistToArray = function(nodelist) {
 
 /**
  */
-exports.parseHTML = function(html, options) {
+exports.parse = function(html, options) {
     return (new HTMLParser(options)).parse(html);
 }
