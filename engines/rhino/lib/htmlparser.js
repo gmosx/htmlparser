@@ -10,6 +10,12 @@ var extend = function(Klass, Zuper) {
 }
 
 /**
+ */
+exports.parse = function(html, options) {
+    return (new HTMLParser(options)).parse(html);
+}
+
+/**
  * A HTML5 parser.
  * 
  * Based on:
@@ -223,8 +229,4 @@ var _nodelistToArray = function(nodelist) {
     return arr;
 }
 
-/**
- */
-exports.parse = function(html, options) {
-    return (new HTMLParser(options)).parse(html);
-}
+

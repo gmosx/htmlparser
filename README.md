@@ -11,17 +11,17 @@ This is part of the [Nitro](http://www.nitrojs.org/) ecosystem of Web Applicatio
 Usage
 -----
 
-    var parse = require("htmlparser").parse,
+    var HTMLParser = require("htmlparser").HTMLParser,
         sizzle = require("sizzle").sizzle;
-        
+
     var html = '<html><p id="header"><b>nice</b></p><div id="test" class="big">hello</div><div>second</div></html>',
-        document = parseHTML(html),
+        parser = new HTMLParser(),
+        document = parser.parse(html),
         $ = sizzle(document);
 
-        $("div").forEach(function(el) {
-            print(el.innerHTML);
-        });
-    }
+    $("div").forEach(function(el) {
+        print(el.innerHTML);
+    });
 
 
 Credits
