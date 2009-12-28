@@ -131,8 +131,8 @@ Object.defineProperty(HTMLElement.prototype, "disabled", {
 
 Object.defineProperty(HTMLElement.prototype, "firstChild", {
     get: function() {
-        var c = this._raw.getFirstChild();
-        return c ? new HTMLElement(c) : null;
+        var n = this._raw.getFirstChild();
+        return n ? new HTMLElement(n) : null;
     }
 });
 
@@ -168,14 +168,15 @@ HTMLElement.prototype.insertBefore = function(newChild, refChild) {
 
 Object.defineProperty(HTMLElement.prototype, "lastChild", {
     get: function() {
-        var c = this._raw.getLastChild();
-        return c ? new HTMLElement(c) : null;
+        var n = this._raw.getLastChild();
+        return n ? new HTMLElement(n) : null;
     }
 });
 
 Object.defineProperty(HTMLElement.prototype, "nextSibling", {
     get: function() {
-        return new HTMLElement(this._raw.getNextSibling());
+        var n = this._raw.getNextSibling();
+        return n ? new HTMLElement(n) : null;
     }
 });
 
@@ -187,13 +188,15 @@ Object.defineProperty(HTMLElement.prototype, "ownerDocument", {
 
 Object.defineProperty(HTMLElement.prototype, "parentNode", {
     get: function() {
-        return new HTMLElement(this._raw.getParentNode());
+        var n = this._raw.getParentNode();
+        return n ? new HTMLElement(n) : null;
     }
 });
 
 Object.defineProperty(HTMLElement.prototype, "previousSibling", {
     get: function() {
-        return new HTMLElement(this._raw.getPreviousSibling());
+        var n = this._raw.getPreviousSibling();
+        return n ? new HTMLElement(n) : null;
     }
 });
 
