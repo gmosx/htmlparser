@@ -23,11 +23,15 @@ Usage
         print(el.innerHTML);
     });
 
+    print(document.toHTML());
+    print(document);
+
 
 Credits
 -------
 
 * George Moschovitis <george.moschovitis@gmail.com>
+* Bryan Berry <bryan@olenepal.org>
 
 Java HTML Parser
 
@@ -39,7 +43,7 @@ Java HTML Parser
 License
 -------
 
-Copyright (c) 2009 George Moschovitis, http://www.gmosx.com
+Copyright (c) 2009-2010 George Moschovitis, [http://www.gmosx.com](http://www.gmosx.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to

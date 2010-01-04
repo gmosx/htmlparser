@@ -25,7 +25,9 @@ var HTMLParser = exports.HTMLParser = function(options) {
 }
 
 HTMLParser.prototype.parseRaw = function(html) {
-    return jparser.parse(new JInputSource(new JStringReader(html)));
+    var source = new JInputSource(new JStringReader(html));
+//    source.setEncoding("UTF-8");
+    return jparser.parse(source);
 }
 
 HTMLParser.prototype.parse = function(html) {
@@ -37,6 +39,10 @@ HTMLParser.prototype.parse = function(html) {
  */
 var HTMLNode = function(jnode) {
     this._raw = jnode;
+}
+
+HTMLNode.prototype.getChildNodes = function() {
+    return _nodelistToArray(this._raw.getChildNodes());
 }
 
 Object.defineProperty(HTMLNode.prototype, "nodeName", {
@@ -56,6 +62,23 @@ Object.defineProperty(HTMLNode.prototype, "nodeValue", {
         return String(this._raw.getNodeValue());
     }
 });
+
+HTMLNode.prototype.toString = function() {
+    return this.nodeName;
+}        
+
+var JDom2Sax = Packages.nu.validator.htmlparser.dom.Dom2Sax,
+    JHtmlSerializer = Packages.nu.validator.htmlparser.sax.HtmlSerializer,
+    JStringWriter = Packages.java.io.StringWriter;
+
+HTMLNode.prototype.toHTML = function() {
+    var w = new JStringWriter(),
+        s = new JHtmlSerializer(w);
+
+    new JDom2Sax(s, s).parse(this._raw);
+
+    return String(w.toString());
+}        
 
 /**
  * HTML Document.
@@ -153,6 +176,12 @@ HTMLElement.prototype.hasAttribute = function(name) {
     return this._raw.hasAttribute(name);
 }
 
+Object.defineProperty(HTMLElement.prototype, "href", {
+    get: function() {
+        return String(this.getAttribute("href"));
+    }
+});
+
 Object.defineProperty(HTMLElement.prototype, "innerHTML", {
     get: function() {
         return String(this._raw.getTextContent());
@@ -231,5 +260,3 @@ var _nodelistToArray = function(nodelist) {
  
     return arr;
 }
-
-
